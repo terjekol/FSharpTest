@@ -4,6 +4,7 @@
 open FSharp.Data
 open System
 
+
 //let items = CsvProvider<"C:\\Users\\terje\\Source\\Repos\\FSharpTest\\FSharpTest\\data.csv">.GetSample()
 type DayStatsRaw = CsvProvider<"/Users/terje/Documents/GitHub/FSharpTest/FSharpTest/data.csv">
 let rawItems = DayStatsRaw.GetSample()
