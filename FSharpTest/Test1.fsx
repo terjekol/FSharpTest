@@ -6,7 +6,7 @@ open System
 
 //let items = CsvProvider<"C:\\Users\\terje\\Source\\Repos\\FSharpTest\\FSharpTest\\data.csv">.GetSample()
 type DayStatsRaw = CsvProvider<"/Users/terje/Documents/GitHub/FSharpTest/FSharpTest/data.csv">
-let items = DayStatsRaw.GetSample()
+let rawItems = DayStatsRaw.GetSample()
 
 type DayStats =
     { LocalHigh : decimal
@@ -14,8 +14,9 @@ type DayStats =
       Index : decimal
       Date : DateTime }
 
-let StatsFromRaw (current:DayStatsRaw) previous =
+let statsFromRaw (current:DayStatsRaw) previous =
     { LocalLow = min current.Siste previous.Index
       LocalHigh = max current.Siste previous.Index
       Index = current.Siste
       Date = current.OBX }
+let stats = rawItems.Rows |> List.map statsFromRaw
