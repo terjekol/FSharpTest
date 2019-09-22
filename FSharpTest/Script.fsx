@@ -8,11 +8,11 @@ type Csv = CsvProvider<"/Users/terje/Documents/GitHub/FSharpTest/FSharpTest/data
 type Stats = Csv.Row
 let statsRaw = Csv.Load("/Users/terje/Documents/GitHub/FSharpTest/FSharpTest/data.csv")
 type StatsX = {IndexValue: decimal; Date: DateTime; DayNo: int; LocalMin: decimal; LocalMax: decimal}
-let createStat s:Stats i = 
-    let sx = {IndexValue= s.OBX; DayNo= i; LocalMin= 0; LocalMax= 0}
+let createStat (s:Stats) (i:int) = 
+    let sx = {IndexValue= s.Siste; Date= DateTime.Now; DayNo= i; LocalMin= 0m; LocalMax= 0m}
     sx
 
- let stats = statsRaw.Rows |> Seq.rev |> Seq.map(createStat)
+let stats = statsRaw.Rows |> Seq.rev |> Seq.map(createStat)
 
 
  //let firstRow :Stats = stats.Rows |> Seq.head
